@@ -11,10 +11,14 @@ def get_student():
 
     github = request.args.get('github', 'jhacks') # Always says jhacks
     first, last, github = hackbright.get_student_by_github(github)
+    proj_grade_tuple = hackbright.get_grades_by_github(github)
+    print proj_grade_tuple
+
     html = render_template("student_info.html",
                             first=first,
                             last=last,
-                            github=github)
+                            github=github,
+                            projinfo=proj_grade_tuple)
 
     return html
 
